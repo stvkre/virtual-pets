@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import org.sql2o.*;
 
 
 public class PersonTest {
@@ -20,5 +21,19 @@ public class PersonTest {
   public void getEmail_personInstantiatesWithEmail_String() {
     Person testPerson = new Person("Henry", "[email protected]");
     assertEquals("[email protected]"), testPerson.getEmail();
+  }
+
+  @Test
+  public void equals_returnsTrueIfNameAndEmailAreSame() {
+    Person firstPerson = new Person("Henry", "[email protected]");
+    Person anotherPerson = new Person("Henry", "[email protected]");
+    assertTrue(firstPerson.equals(anotherPerson));
+  }
+
+  @Test
+  public void save_insertsObjectIntoDatabase_Person() {
+    Person testPerson = new Person("Henry", "[email protected]");
+    testPerson.save();
+    assertTrue(Person.all().get(0).equals(testPerson));
   }
 }

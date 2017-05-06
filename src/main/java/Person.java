@@ -14,4 +14,16 @@ public class Person {
   public String getEmail() {
     return email;
   }
+
+    @Overide
+    public boolean equals(Object otherPerson) {
+      if (!(otherPerson instanceof Person)) {
+        return false;
+      } else {
+        Person newPerson = (Person) otherPerson;
+        return this.getName().equals(newPerson.getName()) &&
+        this.getEmail().equals(newPerson.getEmail());
+      }
+
+    }
 }
