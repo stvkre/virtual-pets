@@ -37,6 +37,7 @@ public class PersonTest {
     assertTrue(Person.all().get(0).equals(testPerson));
   }
 
+// database rule
   public class PersonTest {
     @Rule
     public DatabaseRule database = new DatabaseRule();

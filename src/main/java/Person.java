@@ -1,3 +1,6 @@
+import org.sql2o.*;
+
+
 public class Person {
   private String name;
   private String email;
@@ -25,5 +28,16 @@ public class Person {
         this.getEmail().equals(newPerson.getEmail());
       }
 
+    }
+
+    //defining the save method
+    public void save() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "INSERT INTO persons (name, email) VALUES (:name, :email)";
+        con.createQuery(sql)
+        .addParameter("name", this.name)
+        .addParameter("email", this.email)
+        .executeUpdate();
+      }
     }
 }
