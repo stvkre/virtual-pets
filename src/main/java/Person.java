@@ -6,6 +6,7 @@ import org.sql2o.*;
 public class Person {
   private String name;
   private String email;
+  private int id;
 
   public Person(String name, String email) {
     this.name = name;
@@ -20,7 +21,7 @@ public class Person {
     return email;
   }
 
-    @Overide
+    @Override
     public boolean equals(Object otherPerson) {
       if (!(otherPerson instanceof Person)) {
         return false;

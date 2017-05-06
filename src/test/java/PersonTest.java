@@ -5,6 +5,10 @@ import org.sql2o.*;
 
 public class PersonTest {
 
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
+
   @Test
   public void person_instantiatesCorrectly_true() {
     Person testPerson = new Person("Henry", "[email protected]");
@@ -20,7 +24,7 @@ public class PersonTest {
   @Test
   public void getEmail_personInstantiatesWithEmail_String() {
     Person testPerson = new Person("Henry", "[email protected]");
-    assertEquals("[email protected]"), testPerson.getEmail();
+    assertEquals("[email protected]", testPerson.getEmail());
   }
 
   @Test
@@ -37,12 +41,6 @@ public class PersonTest {
     assertTrue(Person.all().get(0).equals(testPerson));
   }
 
-// database rule
-  public class PersonTest {
-    @Rule
-    public DatabaseRule database = new DatabaseRule();
-  }
-
 //all method
   @Test
   public void all_returnsAllInstancesOfPerson_true() {
@@ -51,6 +49,15 @@ public class PersonTest {
     Person secondPerson = new Person("Harriet", "harriet@harriet.com");
     secondPerson.save();
     assertEquals(true, Person.all().get(0).equals(firstPerson));
-    assertEquals(true, Person.all().get(1).equals(secndPerson));
+    assertEquals(true, Person.all().get(1).equals(secondPerson));
+  }
+
+  // gathering id VALUES
+  @Test
+  public void save_assignsIdToObject() {
+    Person testPerson = new Person("Henry", "henry@henry.com");
+    testPerson.save();
+    Person savedPerson = Person.all().get(0);
+    assertEquals(testPerson.getId(), savedperson.getId());
   }
 }
