@@ -13,4 +13,11 @@ public class MonsterTest {
     assertEquals(true, testMonster instanceof Monster);
   }
 
+// instatiate Monster class with a name
+  @Test
+ public void Monster_instantiatesWithName_String() {
+   Monster testMonster = new Monster("Bubbles", 1);
+   assertEquals("Bubbles", testMonster.getName());
+ }
+
 }
