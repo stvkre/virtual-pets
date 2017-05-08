@@ -43,4 +43,24 @@ public class MonsterTest {
    testMonster.save();
    assertTrue(Monster.all().get(0).equals(testMonster));
  }
+
+ // setting Monster's Id attribute
+ @Test
+  public void save_assignsIdToMonster() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.save();
+    Monster savedMonster = Monster.all().get(0);
+    assertEquals(savedMonster.getId(), testMonster.getId());
+  }
+
+  // returning all instances of Monster method
+  @Test
+ public void all_returnsAllInstancesOfMonster_true() {
+   Monster firstMonster = new Monster("Bubbles", 1);
+   firstMonster.save();
+   Monster secondMonster = new Monster("Spud", 1);
+   secondMonster.save();
+   assertEquals(true, Monster.all().get(0).equals(firstMonster));
+   assertEquals(true, Monster.all().get(1).equals(secondMonster));
+ }
 }
