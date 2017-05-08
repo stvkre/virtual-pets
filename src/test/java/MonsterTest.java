@@ -36,4 +36,11 @@ public class MonsterTest {
     assertTrue(testMonster.equals(anotherMonster));
   }
 
+  // saving Monsters class to the database
+  @Test
+ public void save_returnsTrueIfDescriptionsAretheSame() {
+   Monster testMonster = new Monster("Bubbles", 1);
+   testMonster.save();
+   assertTrue(Monster.all().get(0).equals(testMonster));
+ }
 }
