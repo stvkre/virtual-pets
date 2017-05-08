@@ -28,4 +28,12 @@ public class MonsterTest {
     assertEquals(1, testMonster.getPersonId());
   }
 
+  // Overriding equals function
+  @Test
+  public void equals_returnsTrueIfNameAndPersonIdAreSame_true() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    Monster anotherMonster = new Monster("Bubbles", 1);
+    assertTrue(testMonster.equals(anotherMonster));
+  }
+
 }
