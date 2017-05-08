@@ -54,4 +54,14 @@ public class Monster {
      return con.createQuery(sql).executeAndFetch(Monster.class);
    }
  }
+
+ public static Monster find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM monsters where id=:id";
+      Monster monster = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Monster.class);
+      return monster;
+    }
+  }
 }
