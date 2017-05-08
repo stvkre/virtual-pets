@@ -8,4 +8,8 @@ public class Monster {
   public String getName() {
     return name;
   }
+
+  public int getPersonId() {
+    return personId;
+  }
 }
