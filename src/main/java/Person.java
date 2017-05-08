@@ -21,6 +21,10 @@ public class Person {
     return email;
   }
 
+  public int getId() {
+    return id;
+  }
+
     @Override
     public boolean equals(Object otherPerson) {
       if (!(otherPerson instanceof Person)) {
@@ -40,7 +44,8 @@ public class Person {
         con.createQuery(sql)
         .addParameter("name", this.name)
         .addParameter("email", this.email)
-        .executeUpdate();
+        .executeUpdate()
+        .getKey();
       }
     }
 
@@ -49,6 +54,16 @@ public class Person {
       String sql = "SELECT * FROM persons";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Person.class);
+      }
+    }
+
+    public static Person find(int id) {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM persons where id=:id";
+        Person person = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Person.class);
+        return person;
       }
     }
 }

@@ -54,10 +54,20 @@ public class PersonTest {
 
   // gathering id VALUES
   @Test
-  public void save_assignsIdToObject() {
-    Person testPerson = new Person("Henry", "henry@henry.com");
-    testPerson.save();
-    Person savedPerson = Person.all().get(0);
-    assertEquals(testPerson.getId(), savedperson.getId());
-  }
+   public void save_assignsIdToObject() {
+     Person testPerson = new Person("Henry", "henry@henry.com");
+     testPerson.save();
+     Person savedPerson = Person.all().get(0);
+     assertEquals(testPerson.getId(), savedPerson.getId());
+   }
+
+   // findind Person based on their Id
+   @Test
+   public void find_returnsPersonWithSameId_secondPerson() {
+     Person firstPerson = new Person("Henry", "henry@henry.com");
+     firstPerson.save();
+     Person secondPerson = new Person("Harriet", "harriet@harriet.com");
+     secondPerson.save();
+     assertEquals(Person.find(secondPerson.getId()), secondPerson);
+   }
 }
