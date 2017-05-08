@@ -20,4 +20,12 @@ public class MonsterTest {
    assertEquals("Bubbles", testMonster.getName());
  }
 
+ // instantiate Monster class with person ID
+
+ @Test
+  public void Monster_instantiatesWithPersonId_int() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    assertEquals(1, testMonster.getPersonId());
+  }
+
 }
