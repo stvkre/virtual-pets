@@ -81,4 +81,18 @@ public class MonsterTest {
     Monster testMonster = new Monster("Bubbles", 1);
     assertEquals(testMonster.getPlayLevel(), (Monster.MAX_PLAY_LEVEL / 2));
   }
+
+  // instatiating the second constant: sleepLevel
+  @Test
+  public void monster_instantiatesWithHalfFullSleepLevel(){
+    Monster testMonster = new Monster("Bubbles", 1);
+    assertEquals(testMonster.getSleepLevel(), (Monster.MAX_SLEEP_LEVEL / 2));
+  }
+
+  // instatiating the third constant: foodLevel
+  @Test
+  public void monster_instantiatesWithHalfFullFoodLevel(){
+    Monster testMonster = new Monster("Bubbles", 1);
+    assertEquals(testMonster.getFoodLevel(), (Monster.MAX_FOOD_LEVEL / 2));
+  }
 }

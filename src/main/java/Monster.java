@@ -20,6 +20,15 @@ public class Monster {
     this.name = name;
   }
 
+  public Monster(String name, int personId) {
+   this.name = name;
+   this.personId = personId;
+   playLevel = MAX_PLAY_LEVEL / 2;
+   sleepLevel = MAX_SLEEP_LEVEL / 2;
+   foodLevel = MAX_FOOD_LEVEL / 2;
+ }
+
+
   public String getName() {
     return name;
   }
@@ -30,6 +39,18 @@ public class Monster {
 
   public int getId() {
     return id;
+  }
+
+  public int getPlayLevel() {
+    return playLevel;
+  }
+
+  public int getSleepLevel(){
+    return sleepLevel;
+  }
+
+  public int getFoodLevel() {
+    return foodLevel;
   }
 
 
