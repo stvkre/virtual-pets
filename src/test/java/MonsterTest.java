@@ -1,3 +1,4 @@
+import java.text.DateFormat;
 import java.sql.Timestamp;
 import java.util.Date;
 import org.junit.*;
@@ -223,7 +224,18 @@ public class MonsterTest {
     testMonster.save();
     Timestamp savedMonsterBirthday = Monster.find(testMonster.getId()).getBirthday();
     Timestamp rightNow = new Timestamp(new Date().getTime());
-    assertEquals(rightNow, savedMonsterBirthday);
+    assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterBirthday));
+  }
+
+  // asserting sleep method to update the lastslept value accurately
+  @Test
+  public void sleep_recordsTimeLastSleptInDatabase() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.save();
+    testMonster.sleep();
+    Timestamp savedMonsterLastSlept = Monster.find(testMonster.getId()).getLastSlept();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastSlept));
   }
 
 }

@@ -12,9 +12,9 @@ public class Monster {
   private int sleepLevel;
   private int playLevel;
   private Timestamp birthday;
-  private Timestamp lastate;
-  private Timestamp lastslept;
-  private Timestamp lastplayed;
+  private Timestamp lastAte;
+  private Timestamp lastSlept;
+  private Timestamp lastPlayed;
 
   public static final int MAX_FOOD_LEVEL = 3;
   public static final int MAX_SLEEP_LEVEL = 8;
@@ -68,6 +68,10 @@ public class Monster {
 
   public Timestamp getBirthday(){
     return birthday;
+  }
+
+  public Timestamp getLastSlept(){
+    return lastSlept;
   }
 
   @Override
@@ -135,6 +139,13 @@ public class Monster {
     if (sleepLevel >= MAX_SLEEP_LEVEL){
      throw new UnsupportedOperationException("You cannot make your monster sleep anymore!");
    }
+   // inserting a new timestamp in the colomn
+   try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE monsters SET lastslept = now() WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
     sleepLevel++;
   }
 
