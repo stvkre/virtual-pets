@@ -238,4 +238,15 @@ public class MonsterTest {
     assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastSlept));
   }
 
+  // asserting sleep method to update the lastAte value accurately
+
+  @Test
+    public void feed_recordsTimeLastAteInDatabase() {
+      Monster testMonster = new Monster("Bubbles", 1);
+      testMonster.save();
+      testMonster.feed();
+      Timestamp savedMonsterLastAte = Monster.find(testMonster.getId()).getLastAte();
+      Timestamp rightNow = new Timestamp(new Date().getTime());
+      assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastAte));
+    }
 }
