@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import org.sql2o.*;
+import java.sql.Timestamp;
 
 
 public class Monster {
@@ -10,6 +11,10 @@ public class Monster {
   private int foodLevel;
   private int sleepLevel;
   private int playLevel;
+  private Timestamp birthday;
+  private Timestamp lastate;
+  private Timestamp lastslept;
+  private Timestamp lastplayed;
 
   public static final int MAX_FOOD_LEVEL = 3;
   public static final int MAX_SLEEP_LEVEL = 8;
@@ -61,8 +66,9 @@ public class Monster {
     return foodLevel;
   }
 
-
-
+  public Timestamp getBirthday(){
+    return birthday;
+  }
 
   @Override
   public boolean equals(Object otherMonster){
@@ -75,16 +81,19 @@ public class Monster {
     }
   }
 
+  // save method to include the birthday of every new monster
   public void save() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO monsters (name, personid) VALUES (:name, :personId)";
-      this.id = (int) con.createQuery(sql, true)
-        .addParameter("name", this.name)
-        .addParameter("personId", this.personId)
-        .executeUpdate()
-        .getKey();
-    }
-  }
+
+   try(Connection con = DB.sql2o.open()) {
+     String sql = "INSERT INTO monsters (name, personId, birthday) VALUES (:name, :personId, now())";
+     this.id = (int) con.createQuery(sql, true)
+       .addParameter("name", this.name)
+       .addParameter("personId", this.personId)
+       .executeUpdate()
+       .getKey();
+   }
+ }
+
 
   public static List<Monster> all() {
    String sql = "SELECT * FROM monsters";

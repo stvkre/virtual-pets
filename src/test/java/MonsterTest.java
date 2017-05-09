@@ -1,3 +1,5 @@
+import java.sql.Timestamp;
+import java.util.Date;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
@@ -212,6 +214,16 @@ public class MonsterTest {
       } catch (UnsupportedOperationException exception){ }
     }
     assertTrue(testMonster.getSleepLevel() <= Monster.MAX_SLEEP_LEVEL);
+  }
+
+  // adding a monster's birthday
+  @Test
+  public void save_recordsTimeOfCreationInDatabase() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.save();
+    Timestamp savedMonsterBirthday = Monster.find(testMonster.getId()).getBirthday();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow, savedMonsterBirthday);
   }
 
 }
