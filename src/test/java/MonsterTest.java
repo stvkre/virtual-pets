@@ -238,7 +238,7 @@ public class MonsterTest {
     assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastSlept));
   }
 
-  // asserting sleep method to update the lastAte value accurately
+  // asserting ate method to update the lastAte value accurately
 
   @Test
     public void feed_recordsTimeLastAteInDatabase() {
@@ -249,4 +249,40 @@ public class MonsterTest {
       Timestamp rightNow = new Timestamp(new Date().getTime());
       assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastAte));
     }
+
+    // asserting play method to update the lastPlayed value accurately
+    @Test
+  public void play_recordsTimeLastPlayedInDatabase() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.save();
+    testMonster.play();
+    Timestamp savedMonsterLastPlayed = Monster.find(testMonster.getId()).getLastPlayed();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(DateFormat.getDateTimeInstance().format(rightNow), DateFormat.getDateTimeInstance().format(savedMonsterLastPlayed));
+  }
+
+  // insert timer
+  @Test
+  public void timer_executesDepleteLevelsMethod() {
+    Monster testMonster = new Monster("Bubbles", 1);
+    int firstPlayLevel = testMonster.getPlayLevel();
+    testMonster.startTimer();
+    try {
+      Thread.sleep(6000);
+    } catch (InterruptedException exception){}
+    int secondPlayLevel = testMonster.getPlayLevel();
+    assertTrue(firstPlayLevel > secondPlayLevel);
+  }
+
+  // monster levels reaching 0
+  @Test
+ public void timer_haltsAfterMonsterDies() {
+   Monster testMonster = new Monster("Bubbles", 1);
+   testMonster.startTimer();
+   try {
+     Thread.sleep(6000);
+   } catch (InterruptedException exception){}
+   assertFalse(testMonster.isAlive());
+   assertTrue(testMonster.getFoodLevel() >= 0);
+ }
 }
