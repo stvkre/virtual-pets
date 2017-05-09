@@ -17,16 +17,15 @@ public class Monster {
   public static final int MIN_ALL_LEVELS = 0;
 
   public Monster(String name, int personId) {
+
     this.name = name;
+    this.personId = personId;
+    playLevel = MAX_PLAY_LEVEL / 2;
+    sleepLevel = MAX_SLEEP_LEVEL / 2;
+    foodLevel = MAX_FOOD_LEVEL / 2;
   }
 
-  public Monster(String name, int personId) {
-   this.name = name;
-   this.personId = personId;
-   playLevel = MAX_PLAY_LEVEL / 2;
-   sleepLevel = MAX_SLEEP_LEVEL / 2;
-   foodLevel = MAX_FOOD_LEVEL / 2;
- }
+
 
  public boolean isAlive() {
     if (foodLevel <= MIN_ALL_LEVELS ||
