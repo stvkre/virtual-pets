@@ -118,6 +118,14 @@ public class Monster {
   }
 
   public void feed(){
+
+    // throwing an exception if user tries to raise the pet's foodLevel above maximum value
+
+    if (foodLevel >= MAX_FOOD_LEVEL){
+      throw new UnsupportedOperationException("You cannot feed your monster anymore!");
+    }
     foodLevel++;
-  }
+    
+}
+
 }
