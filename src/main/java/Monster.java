@@ -108,5 +108,13 @@ public class Monster {
       playLevel--;
       foodLevel--;
       sleepLevel--;
-    }  
+    }
+
+  public void play() {
+    playLevel++;
+  }
+
+  public void sleep(){
+    sleepLevel++;
+  }
 }

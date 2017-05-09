@@ -121,4 +121,20 @@ public class MonsterTest {
     }
     assertEquals(testMonster.isAlive(), false);
   }
+
+  // increasing playLevel
+  @Test
+  public void play_increasesMonsterPlayLevel(){
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.play();
+    assertTrue(testMonster.getPlayLevel() > (Monster.MAX_PLAY_LEVEL / 2));
+  }
+
+// increasing sleepLevel
+@Test
+  public void sleep_increasesMonsterSleepLevel(){
+    Monster testMonster = new Monster("Bubbles", 1);
+    testMonster.sleep();
+    assertTrue(testMonster.getSleepLevel() > (Monster.MAX_SLEEP_LEVEL / 2));
+  }
 }
