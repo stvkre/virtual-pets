@@ -117,4 +117,8 @@ public class Monster {
   public void sleep(){
     sleepLevel++;
   }
+
+  public void feed(){
+    foodLevel++;
+  }
 }
