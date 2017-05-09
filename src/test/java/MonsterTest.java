@@ -146,18 +146,8 @@ public class MonsterTest {
    assertTrue(testMonster.getFoodLevel() > (Monster.MAX_FOOD_LEVEL / 2));
  }
 
- // check maximum food levels
- @Test
-  public void monster_foodLevelCannotGoBeyondMaxValue(){
-    Monster testMonster = new Monster("Bubbles", 1);
-    for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_FOOD_LEVEL); i++){
-      testMonster.feed();
-    }
-    assertTrue(testMonster.getFoodLevel() <= Monster.MAX_FOOD_LEVEL);
-  }
-
-  // throwing an exception to ensure food levels dont surpass the maximum VALUES
-  @Test(expected = UnsupportedOperationException.class)
+ // throwing an exception to ensure food levels dont surpass the maximum VALUES
+ @Test(expected = UnsupportedOperationException.class)
  public void feed_throwsExceptionIfFoodLevelIsAtMaxValue(){
    Monster testMonster = new Monster("Bubbles", 1);
    for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_FOOD_LEVEL); i++){
@@ -165,15 +155,40 @@ public class MonsterTest {
    }
  }
 
- // catching the exception of food levels attempting to surpass the maximum VALUES
+ // check maximum food levels
  @Test
-  public void monster_foodLevelCannotGoBeyondMaxValue(){
+ public void monster_foodLevelCannotGoBeyondMaxValue(){
+   Monster testMonster = new Monster("Bubbles", 1);
+   // catching the exception of food levels attempting to surpass the maximum VALUES
+   for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_FOOD_LEVEL); i++){
+     try {
+       testMonster.feed();
+     } catch (UnsupportedOperationException exception){ }
+   }
+   assertTrue(testMonster.getFoodLevel() <= Monster.MAX_FOOD_LEVEL);
+ }
+
+
+ // throwing an exception to ensure play levels dont surpass the maximum VALUES
+ @Test(expected = UnsupportedOperationException.class)
+  public void play_throwsExceptionIfPlayLevelIsAtMaxValue(){
     Monster testMonster = new Monster("Bubbles", 1);
-    for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_FOOD_LEVEL); i++){
-      try {
-        testMonster.feed();
-      } catch (UnsupportedOperationException exception){ }
+    for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_PLAY_LEVEL); i++){
+      testMonster.play();
     }
-    assertTrue(testMonster.getFoodLevel() <= Monster.MAX_FOOD_LEVEL);
   }
+
+  @Test
+    public void monster_playLevelCannotGoBeyondMaxValue(){
+      Monster testMonster = new Monster("Bubbles", 1);
+
+      // catching the exception of play levels attempting to surpass the maximum VALUES
+      for(int i = Monster.MIN_ALL_LEVELS; i <= (Monster.MAX_PLAY_LEVEL); i++){
+        try {
+          testMonster.play();
+        } catch (UnsupportedOperationException exception){ }
+      }
+      assertTrue(testMonster.getPlayLevel() <= Monster.MAX_PLAY_LEVEL);
+    }
+
 }

@@ -110,6 +110,12 @@ public class Monster {
     }
 
   public void play() {
+
+    // throwing an exception if user tries to raise the pet's playLevel above maximum value
+
+    if (playLevel >= MAX_PLAY_LEVEL){
+     throw new UnsupportedOperationException("You cannot play with monster anymore!");
+   }
     playLevel++;
   }
 
@@ -125,7 +131,7 @@ public class Monster {
       throw new UnsupportedOperationException("You cannot feed your monster anymore!");
     }
     foodLevel++;
-    
+
 }
 
 }
