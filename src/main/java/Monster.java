@@ -120,6 +120,12 @@ public class Monster {
   }
 
   public void sleep(){
+
+    // throwing an exception if user tries to raise the pet's sleepLevel above maximum value
+
+    if (sleepLevel >= MAX_SLEEP_LEVEL){
+     throw new UnsupportedOperationException("You cannot make your monster sleep anymore!");
+   }
     sleepLevel++;
   }
 
