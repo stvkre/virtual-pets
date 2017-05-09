@@ -28,6 +28,15 @@ public class Monster {
    foodLevel = MAX_FOOD_LEVEL / 2;
  }
 
+ public boolean isAlive() {
+    if (foodLevel <= MIN_ALL_LEVELS ||
+    playLevel <= MIN_ALL_LEVELS ||
+    sleepLevel <= MIN_ALL_LEVELS) {
+      return false;
+    }
+    return true;
+  }
+
 
   public String getName() {
     return name;
@@ -94,4 +103,10 @@ public class Monster {
       return monster;
     }
   }
+
+  public void depleteLevels(){
+      playLevel--;
+      foodLevel--;
+      sleepLevel--;
+    }  
 }
