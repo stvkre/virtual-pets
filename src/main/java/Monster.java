@@ -134,7 +134,7 @@ public class Monster {
         foodLevel--;
         sleepLevel--;
       }
-        
+
       }
 
   public void play() {
@@ -202,4 +202,18 @@ public void startTimer(){
     this.timer.schedule(timerTask, 0, 600);
   }
 
+}
+
+public abstract class Monster {
+  public String name;
+  public int personId;
+  public int id;
+  public int foodLevel;
+  public int sleepLevel;
+  public int playLevel;
+  public Timestamp birthday;
+  public Timestamp lastSlept;
+  public Timestamp lastAte;
+  public Timestamp lastPlayed;
+  public Timer timer;
 }
