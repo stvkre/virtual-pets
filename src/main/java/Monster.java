@@ -205,6 +205,7 @@ public void startTimer(){
 }
 
 public abstract class Monster {
+
   public String name;
   public int personId;
   public int id;
